@@ -1,2 +1,2 @@
 # Pychares
-some sample way to analyis the shares data
+some sample way to analyes the shares data
