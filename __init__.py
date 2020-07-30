@@ -5,4 +5,4 @@ there are some functions you may need to import to your program
 '''
 
 
-__all__ = ["connect"]
+__all__ = ["spydatalist"]
