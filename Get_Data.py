@@ -19,7 +19,8 @@ class SpySharesData:
         # flag=1 表示股票数据来自上海股票交易所中的A股列表
         if self.flag == 1:
             data_xlsx = pd.read_excel(r'shares_data\sh_a.xlsx')
-            
+            shares_data = pd.DataFrame(data_xlsx)
+
             
             
             
