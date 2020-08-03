@@ -1,10 +1,17 @@
 import numpy as np
 import pandas as pd
+from pandas import pivot
 
 
 # 读取excel文件
-
-data_xls = pd.read_excel(r'shares_data\sh_a.xlsx',)
-shares_data = pd.DataFrame(data_xls)
-shares_data = pd.DataFrame[['2','3']]
-print(shares_data)
+try:
+    data_xls = pd.read_excel(r'shares_data\sh_a.xlsx',header= 0,index_col = 0)
+    shares_data = pd.DataFrame(data_xls)
+    if type(shares_data) == pd.DataFrame:
+        head = shares_data.head()
+        CompanyName = shares_data['公司简称'].values
+        CompanyCode = shares_data['代码'].values
+        print(CompanyName)
+        print(CompanyCode)
+except Exception as e:
+    print(e)

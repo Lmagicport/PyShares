@@ -18,9 +18,14 @@ class SpySharesData:
     def spydatalist(self, shares_code):
         # flag=1 表示股票数据来自上海股票交易所中的A股列表
         if self.flag == 1:
-            data_xlsx = pd.read_excel(r'shares_data\sh_a.xlsx')
-            shares_data = pd.DataFrame(data_xlsx)
-
+            try:
+                data_xls = pd.read_excel(r'shares_data\sh_a.xlsx',header=0, index_col=0)
+                shares_data = pd.DataFrame(data_xls)
+                if type(shares_data) == pd.DataFrame:
+                    CompanyName = shares_data['公司简称'].values
+                    CompanyCode = shares_data['代码'].values
+                    
+                
 
             
             
