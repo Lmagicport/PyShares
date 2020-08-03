@@ -5,13 +5,12 @@ from pandas import pivot
 
 # 读取excel文件
 try:
-    data_xls = pd.read_excel(r'shares_data\sh_a.xlsx',header= 0,index_col = 0)
-    shares_data = pd.DataFrame(data_xls)
-    if type(shares_data) == pd.DataFrame:
-        head = shares_data.head()
-        CompanyName = shares_data['公司简称'].values
-        CompanyCode = shares_data['代码'].values
-        print(CompanyName)
-        print(CompanyCode)
+    # 提取需要的列的信息
+    data_xls = pd.read_excel(r'shares_data\sh_a.xlsx',header= 0,index_col = 0,usecols=['简称','代码'])
+    CompanyInfo = pd.DataFrame(data_xls)
+    if type(CompanyInfo) == pd.DataFrame:
+        CompanyInfo.set_index('简称')
+        CompanyCodeResult=CompanyInfo.to_dict(orient='index')
+        print(CompanyCodeResult)
 except Exception as e:
     print(e)
