@@ -31,12 +31,16 @@ class SpySharesData:
                 print(e)
         elif self.flag == 2:
             # flag =2 表示股票数据来自上海股票交易所中的B股列表
-
-                
-
-            
-            
-            
-
-            
+            try:
+                # 读取所需信息
+                data_xls = pd.read_excel(r'shares_data\sh_b.xlsx',header=0,index_col=0,usecols=['代码','简称'])
+                CompanyInfo = pd.DataFrame(data_xls)
+                if type(CompanyInfo) == pd.DataFrame:
+                    CompanyInfo.set_index('简称')
+                    CompanyCodeResult = CompanyInfo.to_dict(orient='index')
+                    print(CompanyCodeResult)
+            except Exception as e:
+                print(e)
+        
+        elif self.flag == 3:
             

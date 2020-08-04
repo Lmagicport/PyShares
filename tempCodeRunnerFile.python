@@ -6,7 +6,7 @@ from pandas import pivot
 # 读取excel文件
 try:
     # 提取需要的列的信息
-    data_xls = pd.read_excel(r'shares_data\sh_a.xlsx',header= 0,index_col = 0,usecols=['简称','代码'])
+    data_xls = pd.read_excel(r'shares_data\sh_b.xlsx',header= 0,index_col = 0,usecols=['代码','简称'])
     CompanyInfo = pd.DataFrame(data_xls)
     if type(CompanyInfo) == pd.DataFrame:
         CompanyInfo.set_index('简称')
