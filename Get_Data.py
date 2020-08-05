@@ -43,4 +43,9 @@ class SpySharesData:
                 print(e)
         
         elif self.flag == 3:
-            
+            # flag = 3 表示 股票数据来自深圳股票交易所中的A股列表
+            try:
+                data_xls = pd.read_excel(r'shares_data\sz_a.xlsx',header=0,index_col=0,usecols=['A股代码','A股简称'])
+                CompanyInfo= pd.DataFrame(data_xls)
+                if type(CompanyInfo) == pd.DataFrame:
+                    
