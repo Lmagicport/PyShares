@@ -6,14 +6,10 @@ from pandas import pivot
 # 读取excel文件
 try:
     # 提取需要的列的信息
-    data_xls = pd.read_excel(r'shares_data\sz_a.xlsx',header= 0,index_col = 0,usecols=['A股代码','A股简称'])
-    CompanyInfo = pd.DataFrame(data_xls)
-    if type(CompanyInfo) == pd.DataFrame:
-        '''
-        CompanyInfo.set_index('简称')
-        CompanyCodeResult=CompanyInfo.to_dict(orient='index')
-        '''
-        CompanyInfo.loc[CompanyInfo['A股代码'].str.len()==2]
-        print(CompanyInfo)
+    data_csv = pd.DataFrame(pd.read_csv(r'shares_data\sh_a.csv'))
+    CompanyName = data_csv.iloc[:,1]
+    CompanyCode = data_csv.iloc[:,2]
+    CompanyInfo = pd.concat([CompanyCode,CompanyName], axis=1)
+    print(CompanyInfo) 
 except Exception as e:
     print(e)
