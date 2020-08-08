@@ -70,4 +70,5 @@ class SpySharesData:
             except Exception as e:
                 return e    
     
+    # get shares code
     
