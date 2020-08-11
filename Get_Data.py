@@ -4,8 +4,9 @@ in this moudle you can get shares’s data from internet
 
 # get shares list from money.163
 
-import numpy as np
 import pandas as pd
+import requests
+from lxml import etree
 
 
 class SpySharesData:
@@ -32,7 +33,6 @@ class SpySharesData:
                     self.CompanyName = data_csv.iloc[:, 1]
                     self.CompanyCode = data_csv.iloc[:, 2]
                     self.CompanyInfo = pd.concat([self.CompanyCode, self.CompanyName], axis=1)
-                    print(self.CompanyInfo)
                     return self.CompanyInfo
 
             except Exception as e:
@@ -80,12 +80,13 @@ class SpySharesData:
 
     # get shares code
     def get_shares_code(self, SharesName='Null', ShaeresMacket=0):
-        if self.SharesName == 'Null':
+        if SharesName == 'Null':
             return '0000000'
         else:
             if ShaeresMacket == 1:
                 try:
-                    self.CompanyInfo = self.get_shares_code(1)
+                    self.set_shares_marcket(1)
+                    self.CompanyInfo = self.spy_data_list()
                     self.FindResult = self.CompanyInfo[self.CompanyInfo['公司简称'] == SharesName]
                     if self.FindResult.empty is True:
                         return 'there is no code by your index please rechack your share name and retry or use other function'
@@ -96,8 +97,8 @@ class SpySharesData:
             
             elif ShaeresMacket == 2:
                 try:
-                    self.CompanyInfo = self.get_shares_code(2)
-                    print(self.CompanyInfo)
+                    self.set_shares_marcket(2)
+                    self.CompanyInfo = self.spy_data_list()
                     self.FindResult = self.CompanyInfo[self.CompanyInfo['公司简称' == SharesName]]
                     if self.FindResult.empty is True:
                         return 'there is no code by your index please rechack your share name and retry or use other function'
@@ -108,7 +109,8 @@ class SpySharesData:
             
             elif ShaeresMacket == 3:
                 try:
-                    self.CompanyInfo = self.get_shares_code(3)
+                    self.set_shares_marcket(3)
+                    self.CompanyInfo = self.spy_data_list()
                     self.FindResult = self.CompanyInfo[self.CompanyInfo['A股简称' == SharesName]]
                     if self.FindResult.empty is True:
                         return 'there is no code by your index please rechack your share name and retry or use other function'
@@ -119,7 +121,8 @@ class SpySharesData:
             
             elif ShaeresMacket == 4:
                 try:
-                    self.CompanyInfo = self.get_shares_code(4)
+                    self.set_shares_marcket(4)
+                    self.CompanyInfo = self.spy_data_list()
                     self.FindResult = self.CompanyInfo[self.CompanyInfo['B股简称' == SharesName]]
                     if self.FindResult.empty is True:
                         return 'there is no code by your index please rechack your share name and retry or use other function'
@@ -131,8 +134,9 @@ class SpySharesData:
 
     # spy data from money.163.com
 
-
+ 
 if __name__ == '__main__':
-    test = SpySharesData(2)
-    result = test.get_shares_code('黄山旅游', 2)
+    test = SpySharesData(1)
+    # result = test.spy_data_list()
+    result = test.get_shares_code('深物业B', 4)
     print(result)

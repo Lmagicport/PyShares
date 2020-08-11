@@ -9,7 +9,8 @@ try:
     data_csv = pd.DataFrame(pd.read_csv(r'shares_data\sz_b.csv',converters={u'B股代码':str,u'B股简称':str}))
     CompanyName = data_csv.iloc[:,7]
     CompanyCode = data_csv.iloc[:,6]
-    CompanyInfo = pd.concat([CompanyCode,CompanyName], axis=1)
-    print(CompanyInfo) 
+    CompanyInfo = pd.concat([CompanyName,CompanyCode], axis=1)
+    CompanyInfo2 = pd.concat([CompanyCode,CompanyName], axis = 1)
+    print(CompanyInfo2) 
 except Exception as e:
     print(e)
