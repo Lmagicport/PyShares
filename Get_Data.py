@@ -81,7 +81,7 @@ class SpySharesData:
     # get shares code
     def get_shares_code(self, SharesName='Null', ShaeresMacket=0):
         if SharesName == 'Null':
-            return '0000000'
+            return 'please rechack your share name'
         else:
             if ShaeresMacket == 1:
                 try:
@@ -131,12 +131,11 @@ class SpySharesData:
                 
                 except Exception as e:
                     raise e
-
+    
+    
     # spy data from money.163.com
-
+    
  
 if __name__ == '__main__':
     test = SpySharesData(1)
     # result = test.spy_data_list()
-    result = test.get_shares_code('深物业B', 4)
-    print(result)
